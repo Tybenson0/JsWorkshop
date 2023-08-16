@@ -19,9 +19,6 @@ app.use(express.json());
 
 // Set Cross-Origin Resource Sharing (CORS) to frontend React App
 app.use(cors());
-const corsOptions = {
-  origin: 'http://localhost:3000'
-};
 
 // Kintone's record(s) endpoints
 const multipleRecordsEndpoint = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appID}`
