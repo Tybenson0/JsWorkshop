@@ -1,10 +1,60 @@
-.main {
+html {
+  font-size: 62.5%;
+  height: 120vh;
+  max-height: 110vh;
+  background-color: black;
+}
+body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
   display: flex;
-  flex-direction: column;
-  align-content: center;
   justify-content: center;
+  position: relative;
+}
+.hidden {
+  display: none;
+}
+.hide {
+  display: block;
+}
+img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+@font-face {
+  font-family: main-font;
+  src: url(/public/spacefont.woff);
 }
 
+.main {
+  height: 85%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: main-font;
+  position: relative;
+  z-index: 2;
+  margin-top: 5%;
+}
+h2 {
+  color: #e57a1b;
+  font-family: main-font;
+  font-size: 2.6rem;
+}
+p:nth-of-type(1) {
+  font-family: main-font;
+  font-size: 1.4rem;
+}
+p {
+  font-family: main-font;
+  color: #e57a1b;
+  font-size: 1.4rem;
+}
 .loadingDiv {
   position: absolute;
   top: 50%;
@@ -12,7 +62,56 @@
   transform: translate(-50%, -50%);
   z-index: 99;
 }
-
+.submitDiv {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+button {
+  width: 8rem;
+  height: 3rem;
+  background-color: transparent;
+  border: 1px solid #e57a1b;
+  color: #e57a1b;
+}
 .selectDiv {
+  width: 80%;
   padding: 5%;
+}
+
+.listRecordsDiv {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+ul {
+  color: #e57a1b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  height: 70%;
+  max-height: 70%;
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  
+}
+@media only screen and (min-width: 1025px) {
+  .main {
+    width: 40%;
+  }
+  .hidden {
+    top: -10%;
+    display: block;
+  }
+  .hide {
+    display: none;
+  }
 }

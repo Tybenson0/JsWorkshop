@@ -2,24 +2,25 @@ import { City } from "country-state-city";
 import Select from 'react-select'
 
 
-const CityPicker = ({selectedState, selectedCity, setSelectedCity}) => {
-  return(
+const CityPicker = ({ selectedState, selectedCity, setSelectedCity }) => {
+  return (
     <Select
-    options={City.getCitiesOfState(
-      selectedState?.countryCode,
-      selectedState?.isoCode
-    )}
-    getOptionLabel={(options) => {
-      return options["name"];
-    }}
-    getOptionValue={(options) => {
-      return options["name"];
-    }}
-    value={selectedCity}
-    onChange={(item) => {
-      setSelectedCity(item);
-    }}
-  />
+      options={City.getCitiesOfState(
+        selectedState?.countryCode,
+        selectedState?.isoCode
+      )}
+      getOptionLabel={(options) => {
+        return options["name"];
+      }}
+      getOptionValue={(options) => {
+        return options["name"];
+      }}
+      value={selectedCity}
+      onChange={(item) => {
+        setSelectedCity(item);
+      }}
+      className="border"
+    />
   );
 }
 export default CityPicker;

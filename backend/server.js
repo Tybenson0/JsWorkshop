@@ -31,7 +31,47 @@ const singleRecordEndpoint = `https://${subdomain}.kintone.com/k/v1/record.json?
 
 // TODO: Create a GET endpoint at /getData
 
+app.get('/getData', cors(corsOptions), async (req, res) => {
+  const fetchOptions = {
+    method: "GET",
+    headers: {
+      "X-Cybozu-API-Token": apiToken
+    }
+  }
+  const response = await fetch(multipleRecordsEndpoint, fetchOptions)
+  const jsonResponse = await response.json();
+  res.json(jsonResponse);
+})
+
 // TODO: Create a POST endpoint at /postData
+
+app.post('/postData', cors(corsOptions), async (req, res) => {
+  const requestBody = {
+    'app': appID,
+    'record': {
+      'country': {
+        'value': req.body.country
+      },
+      'state': {
+        'value': req.body.state
+      },
+      'city': {
+        'value': req.body.city
+      },
+    }
+  }
+  const options = {
+    'method': 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Cybozu-API-Token': apiToken
+    },
+    'body': JSON.stringify(requestBody)
+  }
+  const response = await fetch(singleRecordEndpoint, options);
+  const jsonResponse = await response.json();
+  res.json(jsonResponse)
+})
 
 app.listen(PORT, () => {
   console.log(`\n Backend server listening at http://localhost:${PORT} \n Confirm if Kintone records are being retrieved at \n http://localhost:${PORT}/getData`);

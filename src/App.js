@@ -48,23 +48,27 @@ function App() {
   }
 
   // Our react JSX.
-  return (
+  return (<>
+    <img src='Stars-bg-mobile.svg' alt='stars' className='hide'></img>
+    <img src='Stars-bg-desktop.svg' alt='stars' className='hidden'></img>
     <div className="main">
-      <h2>I Use Kintone!</h2>
+      <h2>React and ExpressJS Form</h2>
       {/* If loading is true, show a spinner, otherwise show nothing. */}
       {loading ? (
         <div className="loadingDiv">
           <LoadingSpinner />
         </div>
       ) : null}
-      Welcome to React and Kintone!
+      <p>
+        Please fill out the form or call from the database.
+      </p>
       <div className="selectDiv">
         <p>Pick a Country</p>
-        <CountryPicker selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry}/>
-        <p>Then Pick a State</p>
-        <StatePicker selectedCountry={selectedCountry} selectedState={selectedState} setSelectedState={setSelectedState}/>
-        <p>Lastly, Pick a City</p>
-        <CityPicker selectedState={selectedState} selectedCity={selectedCity} setSelectedCity={setSelectedCity}/>
+        <CountryPicker selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
+        <p>Pick a State</p>
+        <StatePicker selectedCountry={selectedCountry} selectedState={selectedState} setSelectedState={setSelectedState} />
+        <p>Pick a City</p>
+        <CityPicker selectedState={selectedState} selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
       </div>
       <div className="submitDiv">
         <button onClick={submit} disabled={loading ? true : false}>
@@ -78,6 +82,7 @@ function App() {
         <ul>{records}</ul>
       </div>
     </div>
+  </>
   );
 }
 
