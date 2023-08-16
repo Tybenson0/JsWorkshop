@@ -1,34 +1,25 @@
-// backend - server.js - Routes API requests from the frontend to Kintone
-
-// Express Server Setup
 const express = require('express');
 const cors = require('cors');
+const fetch = require('node-fetch');  // Make sure you import the 'node-fetch' library
+
 const PORT = 50000;
 const app = express();
 
-// Hide sensitive info in a .env file with dotenv
 require('dotenv').config({ path: '../.env' });
 
-// Get Kintone credentials from a .env file
 const subdomain = process.env.SUBDOMAIN;
 const appID = process.env.APPID;
 const apiToken = process.env.APITOKEN;
 
-// Parse incoming requests with JSON payloads
 app.use(express.json());
 
-// Set Cross-Origin Resource Sharing (CORS) to frontend React App
+// Set Cross-Origin Resource Sharing (CORS) to allow requests from any origin
 app.use(cors());
 
-// Kintone's record(s) endpoints
 const multipleRecordsEndpoint = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appID}`
 const singleRecordEndpoint = `https://${subdomain}.kintone.com/k/v1/record.json?app=${appID}`;
 
-// Kintone app's field codes are 'country' 'state' and 'city'.
-
-// TODO: Create a GET endpoint at /getData
-
-app.get('/getData', cors(corsOptions), async (req, res) => {
+app.get('/getData', async (req, res) => {
   const fetchOptions = {
     method: "GET",
     headers: {
@@ -40,9 +31,7 @@ app.get('/getData', cors(corsOptions), async (req, res) => {
   res.json(jsonResponse);
 })
 
-// TODO: Create a POST endpoint at /postData
-
-app.post('/postData', cors(corsOptions), async (req, res) => {
+app.post('/postData', async (req, res) => {
   const requestBody = {
     'app': appID,
     'record': {
@@ -71,5 +60,5 @@ app.post('/postData', cors(corsOptions), async (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`\n Backend server listening at http://localhost:${PORT} \n Confirm if Kintone records are being retrieved at \n http://localhost:${PORT}/getData`);
+  console.log(`Backend server listening at http://localhost:${PORT}`);
 });
